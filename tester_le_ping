@@ -1,0 +1,14 @@
+---
+- name: Test de connectivité (ping) sur les serveurs distants
+  hosts: all
+  gather_facts: no
+  ignore_unreachable: yes  # Ignore les hôtes injouables
+
+  tasks:
+    - name: Tester la connectivité avec le module ping
+      ansible.builtin.ping:
+      register: ping_result
+
+    - name: Afficher les résultats
+      ansible.builtin.debug:
+        var: ping_result
